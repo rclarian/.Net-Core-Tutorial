@@ -23,10 +23,23 @@ app.Run(async (HttpContext context) =>
         context.Response.StatusCode = 200;
         await context.Response.WriteAsync("You are in the Home page");
     }
-    else if(path == "Contact")
+    else if(path == "/Contact")
     {
         context.Response.StatusCode = 200;
         await context.Response.WriteAsync("You are in the Contact page");
+    }
+    else if (path == "/Product")
+    {
+        context.Response.StatusCode = 200;
+        if (context.Request.Query.ContainsKey("id") && context.Request.Query.ContainsKey("name"))
+        {
+            string id = context.Request.Query["id"];
+            string name = context.Request.Query["name"];
+            await context.Response.WriteAsync($"You selected the Product with ID {id} and Name {name}");
+            return;
+        }
+        
+        await context.Response.WriteAsync("You are in the Product page");
     }
     else
     {
