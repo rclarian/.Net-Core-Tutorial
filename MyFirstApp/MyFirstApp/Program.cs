@@ -8,17 +8,9 @@ var app = builder.Build();
 //Creating a route - HTTP method + URL
 app.MapGet("/", (HttpContext context) => 
     {
-        //string path = context.Request.Path;
-        //string method = context.Request.Method;
-        var userAgent = "";
-        if (context.Request.Headers.ContainsKey("User-Agent"))
-        {
-            userAgent = context.Request.Headers["User-Agent"];
-        }
 
-        context.Response.StatusCode = 200;
-
-        return "User Agent: " + userAgent;
+        context.Response.Headers["Content-Type"] = "text/html";
+        return "<h2>This is a Text response</h2>";
     }
 );
 
