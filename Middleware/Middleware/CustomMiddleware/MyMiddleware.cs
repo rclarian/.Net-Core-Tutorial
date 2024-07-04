@@ -5,12 +5,17 @@ namespace Middleware.CustomMiddleware
     {
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            //Before logic
-            await context.Response.WriteAsync("Custom Middle started\n\n");
+            await context.Response.WriteAsync("Custom Middleware started!\n\n");
             await next(context);
+            await context.Response.WriteAsync("Custom Middleware finished!\n\n");
+        }
+    }
 
-            //After logic
-            await context.Response.WriteAsync("Custom Middle finished");
+    public static class CustomMiddlewareExtension
+    {
+        public static IApplicationBuilder MyMiddleware(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<MyMiddleware>();
         }
     }
 }

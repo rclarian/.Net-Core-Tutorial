@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 //Register custom middleware as a service
-builder.Services.AddTransient<MyMiddleware>();
+//app.MyMiddleware();
+builder.Services.AddTransient<MyMiddleware>(); //error here
 
 //Middleware 1
 app.Use(async (HttpContext context, RequestDelegate next) =>
