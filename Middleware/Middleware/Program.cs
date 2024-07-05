@@ -12,14 +12,14 @@ var app = builder.Build();
 //Middleware 1
 app.Use(async (HttpContext context, RequestDelegate next) =>
 {
-    await context.Response.WriteAsync("Middleware 1 called");
+    await context.Response.WriteAsync("Middleware 1 called\n\n");
     await next(context);
 });
 
 //Middleware 2
 app.Use(async (HttpContext context, RequestDelegate next) =>
 {
-    await context.Response.WriteAsync("\n\n");
+    await context.Response.WriteAsync("Middleware 2 called \n\n");
     await next(context);
 });
 
@@ -29,9 +29,21 @@ app.Use(async (HttpContext context, RequestDelegate next) =>
 app.UseAnotherCustomMiddleware();
 
 //Middleware 4
+app.UseWhen(context => context.Request.Query.ContainsKey("IsAuthorized") && context.Request.Query["IsAuthorized"] == "true",
+    app =>
+    {
+        app.Use(async (context, next) =>
+        {
+            await context.Response.WriteAsync("Middleware 4 called  \n\n");
+            await next(context);
+        });
+    });
+
+
+//Middleware 5
 app.Run(async (HttpContext context) =>
 {
-    await context.Response.WriteAsync("Middleware 4 called \n\n");
+    await context.Response.WriteAsync("Middleware 5 called \n\n");
 });
 
 
