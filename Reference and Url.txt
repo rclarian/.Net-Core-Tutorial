@@ -6,3 +6,4 @@ Time to finish: 10
 
 Topics:
 Middleware - is a component that is assembled into the application pipeline to handle request and responses.
+Middleware Extensions Method - 

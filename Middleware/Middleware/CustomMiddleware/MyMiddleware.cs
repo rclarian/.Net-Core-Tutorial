@@ -11,6 +11,7 @@ namespace Middleware.CustomMiddleware
         }
     }
 
+    //Custom Middleware Extensions
     public static class CustomMiddlewareExtension
     {
         public static IApplicationBuilder MyMiddleware(this IApplicationBuilder app)
