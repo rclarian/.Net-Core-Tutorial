@@ -1,15 +1,13 @@
 using Middleware.CustomMiddleware;
 
-
 //1. Create an Intance of web application builder
 var builder = WebApplication.CreateBuilder(args);
 
+//Register custom middleware as a service
+builder.Services.AddTransient<MyMiddleware>(); //error here
+
 //2. Create an instance of WebApplication
 var app = builder.Build();
-
-//Register custom middleware as a service
-//app.MyMiddleware();
-builder.Services.AddTransient<MyMiddleware>(); //error here
 
 //Middleware 1
 app.Use(async (HttpContext context, RequestDelegate next) =>
