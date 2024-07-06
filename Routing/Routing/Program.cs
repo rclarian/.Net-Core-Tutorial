@@ -7,7 +7,7 @@ app.UseRouting();
 
 app.UseEndpoints(endpoint =>
 {
-    endpoint.MapGet("/products/{id:int}", async (context) =>
+    endpoint.MapGet("/products/{id:int:min(10):max(1000)}", async (context) =>
     {
         var id = context.Request.RouteValues["id"];
         if (id != null)
@@ -22,7 +22,7 @@ app.UseEndpoints(endpoint =>
         
     });
 
-    endpoint.MapGet("/books/author/{authorname:alpha:minlength(4):maxlength(8)}/{bookid?}", async (context) =>
+    endpoint.MapGet("/books/author/{authorname:alpha:length(4, 8)}/{bookid?}", async (context) =>
     {
         var bookId = context.Request.RouteValues["bookid"];
         var authorName = Convert.ToString(context.Request.RouteValues["authorname"]);
