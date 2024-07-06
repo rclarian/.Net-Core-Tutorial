@@ -5,39 +5,26 @@ var app = builder.Build();
 
 app.UseRouting();
 
-app.Use(async (context, next) =>
+app.UseEndpoints(endpoint =>
 {
-    Endpoint endpoint = context.GetEndpoint();
-    if(endpoint != null)
+    endpoint.MapGet("/products/{id}", async (context) =>
     {
-        await context.Response.WriteAsync(endpoint.DisplayName);
-    }
-    await next(context);
-});
-
-app.UseEndpoints(endpoint => 
-{
-    //Define routes
-    endpoint.Map("/Home", async (context) =>
-    {
-        await context.Response.WriteAsync("Your are in the Home page");
+        var id = Convert.ToInt32(context.Request.RouteValues["id"]);
+        await context.Response.WriteAsync($"This is product with ID {id}");
     });
 
-    endpoint.MapGet("/Product", async (context) =>
+    endpoint.MapGet("/books/author/{authorname}/{bookid}", async (context) =>
     {
-        await context.Response.WriteAsync("Your are in the Products page");
-    });
-
-    endpoint.MapPost("/Product", async (context) =>
-    {
-        await context.Response.WriteAsync("A new Product created");
+        var bookId = Convert.ToInt32(context.Request.RouteValues["bookid"]);
+        var authorName = Convert.ToString(context.Request.RouteValues["authorname"]);
+        await context.Response.WriteAsync($"This is the book authored by {authorName} and book ID is {bookId}");
     });
 });
 
 //Short circuit middleware
 app.Run(async (HttpContext context) =>
 {
-    await context.Response.WriteAsync("The URL which you are looking for is not found!");
+    await context.Response.WriteAsync("Welcome to ASP.NET Core app!");
 });
 
 app.Run();
