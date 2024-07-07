@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
 using Routing.CustomConstraints;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
@@ -14,6 +15,10 @@ builder.Services.AddRouting(options =>
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "mywebroot"))
+});
 
 app.UseRouting();
 

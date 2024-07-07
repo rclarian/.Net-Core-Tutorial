@@ -8,11 +8,10 @@
 
   <ItemGroup>
     <Content Include="staticfiles\planet.jpg" />
-    <Content Include="staticfiles\sample.txt" />
+    <Content Include="mywebroot\sample.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="mywebroot\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
