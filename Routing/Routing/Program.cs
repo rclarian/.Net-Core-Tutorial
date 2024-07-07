@@ -1,6 +1,13 @@
 using Microsoft.AspNetCore.Http;
+using Routing.CustomConstraints;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRouting(options =>
+{
+    options.ConstraintMap.Add("alphanumeric", typeof(AlphaNumericConstraint));
+});
+
 var app = builder.Build();
 
 app.UseRouting();
@@ -67,6 +74,12 @@ app.UseEndpoints(endpoint =>
         await context.Response.WriteAsync($"This is the daily report for {date}");
     });
 
+    // - /user/manojjha10
+    endpoint.MapGet("/user/{username:alphanumeric}", async (context) =>
+    {
+        string? username = Convert.ToString(context.Request.RouteValues["username"]);
+        await context.Response.WriteAsync($"Welcome {username}");
+    });
 
 });
 
