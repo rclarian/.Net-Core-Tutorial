@@ -81,6 +81,17 @@ app.UseEndpoints(endpoint =>
         await context.Response.WriteAsync($"Welcome {username}");
     });
 
+    //Route: /books/category/{bookid}
+    endpoint.MapGet("/books/category/{bookid}", async (context) =>
+    {
+        await context.Response.WriteAsync("Route called - /books/category/{bookid}");
+    });
+
+    //Route: /books/category/{bookid:int}
+    endpoint.MapGet("/books/category/{bookid:int}", async (context) =>
+    {
+        await context.Response.WriteAsync("Route called - /books/category/{bookid:int}");
+    });
 });
 
 //Short circuit middleware
