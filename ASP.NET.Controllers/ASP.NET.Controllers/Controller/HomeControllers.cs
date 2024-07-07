@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ASP.NET.Controllers.Models;
 
 namespace ASP.NET.Controllers.Controllers
 {
@@ -36,5 +37,20 @@ namespace ASP.NET.Controllers.Controllers
         {
             return "You are in Products Page!";
         }
+
+        [Route("/Employee/John")]
+        public JsonResult Employee()
+        {
+            Employee emp = new Employee()
+            {
+                ID = 101,
+                Name = "John",
+                Salary = 1000,
+                Age = 28
+            };
+
+            return Json(emp);
+        }
+
     }
 }
