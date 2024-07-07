@@ -5,9 +5,15 @@ namespace ASP.NET.Controllers.Controllers
     public class FileController : Controller
     {
         [Route("File/Download-file")]
-        public VirtualFileResult Index()
+        public VirtualFileResult FileDownload1()
         {
             return File("/Samples/Sample.pdf", "application/pdf");
+        }
+
+        [Route("File/Download-file2")]
+        public PhysicalFileResult FileDownload2()
+        {
+            return PhysicalFile("E:\\Project\\Tutorial2023\\.Net Core Project\\SampleFile\\Sample.pdf", "application/pdf");
         }
     }
 }
