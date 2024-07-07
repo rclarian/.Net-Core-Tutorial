@@ -7,9 +7,14 @@ namespace ASP.NET.Controllers.Controller
     {
         [Route("Home")]
         [Route("/")]
-        public string Index()
+        public ContentResult Index()
         {
-            return "Welcome from ASP.NET core application";
+            return new ContentResult()
+            {
+                Content = "<h1>Welcome from ASP.NET core application</h1>",
+                ContentType = "text/html"
+            };
+            //return "Welcome from ASP.NET core application";
         }
 
         [Route("About")]
