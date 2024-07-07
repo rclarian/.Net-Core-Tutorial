@@ -1,19 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ASP.NET.Controllers.Controller
+namespace ASP.NET.Controllers.Controllers
 {
     //[Controller]
-    public class HomeController
+    public class HomeControllers : Controller
     {
         [Route("Home")]
         [Route("/")]
         public ContentResult Index()
         {
-            return new ContentResult()
-            {
-                Content = "<h1>Welcome from ASP.NET core application</h1>",
-                ContentType = "text/html"
-            };
+            return Content("<h1>Welcome from ASP.NET core application</h1", "text/html");
+
+            //return new ContentResult()
+            //{
+            //    Content = "<h1>Welcome from ASP.NET core application</h1>",
+            //    ContentType = "text/html"
+            //};
             //return "Welcome from ASP.NET core application";
         }
 

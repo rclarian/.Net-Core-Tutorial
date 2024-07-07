@@ -1,4 +1,4 @@
-using ASP.NET.Controllers.Controller;
+using ASP.NET.Controllers.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
