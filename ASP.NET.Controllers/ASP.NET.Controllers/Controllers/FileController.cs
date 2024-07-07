@@ -15,5 +15,12 @@ namespace ASP.NET.Controllers.Controllers
         {
             return PhysicalFile("E:\\Project\\Tutorial2023\\.Net Core Project\\SampleFile\\Sample.pdf", "application/pdf");
         }
+
+        [Route("File/Download-file3")]
+        public FileContentResult FileDownload3()
+        {
+            byte[] bytes = System.IO.File.ReadAllBytes(@"E:\\Project\\Tutorial2023\\.Net Core Project\\SampleFile\\Sample.pdf");
+            return File(bytes, "application/pdf");
+        }
     }
 }
