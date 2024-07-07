@@ -10,6 +10,8 @@ builder.Services.AddRouting(options =>
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseEndpoints(endpoint =>
