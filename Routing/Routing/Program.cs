@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Http;
 using Routing.CustomConstraints;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+{
+    WebRootPath = "staticfiles"
+});
 
 builder.Services.AddRouting(options =>
 {
