@@ -39,7 +39,7 @@ namespace ASP.NET.Controllers.Controllers
         }
 
         [Route("/Employee/John")]
-        public JsonResult Employee()
+        public IActionResult Employee()
         {
             Employee emp = new Employee()
             {
