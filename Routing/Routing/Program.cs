@@ -39,7 +39,7 @@ app.UseEndpoints(endpoint =>
         
     });
 
-    endpoint.MapGet("/quaterly-reports/{year:int:min(1999):minlength(4)}/{month:regex(^(mar|jun|sep|dec)$)}", async (context) =>
+    endpoint.MapGet("/quaterly-reports/{year:int:min(1999):minlength(4)}/{month}", async (context) =>
     {
         int year = Convert.ToInt32(context.Request.RouteValues["year"]);
         string? month = Convert.ToString(context.Request.RouteValues["month"]);
