@@ -18,8 +18,22 @@ namespace ModelBinding.Controllers
             {
                 return Content("Book ID not provided", "text/plain");
             }
+
+            if (!ModelState.IsValid)
+            {
+                List<string> errors = new List<string>();
+                foreach (var value in ModelState.Values)
+                {
+                    foreach (var error in value.Errors) 
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+                string errorMessages = string.Join("\n", errors);
+                return BadRequest(errorMessages);
+            }
           
-            return Content($"Book ID is: {book.BookID} \nAuthor is: {book.Author}", "text/plain");
+            return Content($"Book ID is: {book.BookID} \nAuthor is: {book.Author}\nBook Name = {book.BookName}", "text/plain");
         }
     }
 }
