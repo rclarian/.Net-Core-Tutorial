@@ -9,7 +9,7 @@ namespace ModelBinding.Controllers
         //URL query string - /Books?bookid=101&author=steve
         //URL route parameters - /Books/102/RYAN
         [Route("/Books/{BookId?}/{Author?}")]
-        public IActionResult Book([FromQuery] Book book)
+        public IActionResult Book(Book book)
         {
             if(book.BookID.HasValue == false)
             {
