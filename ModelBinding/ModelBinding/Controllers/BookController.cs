@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using ModelBinding.Model;
 
 namespace ModelBinding.Controllers
 {
@@ -8,14 +9,14 @@ namespace ModelBinding.Controllers
         //URL query string - /Books?bookid=101&author=steve
         //URL route parameters - /Books/102/RYAN
         [Route("/Books/{BookId?}/{Author?}")]
-        public IActionResult Book([FromRoute] int? bookid, [FromQuery] string author)
+        public IActionResult Book([FromQuery] Book book)
         {
-            if(bookid.HasValue == false)
+            if(book.BookID.HasValue == false)
             {
                 return Content("Book ID not provided", "text/plain");
             }
           
-            return Content($"Book ID is: {bookid} \nAuthor is: {author}", "text/plain");
+            return Content($"Book ID is: {book.BookID} \nAuthor is: {book.Author}", "text/plain");
         }
     }
 }
