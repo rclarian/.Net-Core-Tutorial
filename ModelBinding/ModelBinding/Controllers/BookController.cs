@@ -6,8 +6,11 @@ namespace ModelBinding.Controllers
 {
     public class BookController : Controller
     {
+        //Form data > request body > route parameter > query string
+        //Route parameters will have higher preference over query string key
         //URL query string - /Books?bookid=101&author=steve
         //URL route parameters - /Books/102/RYAN
+
         [Route("/Books/{BookId?}/{Author?}")]
         public IActionResult Book(Book book)
         {
