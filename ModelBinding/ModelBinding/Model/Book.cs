@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
 namespace ModelBinding.Model
@@ -13,9 +14,18 @@ namespace ModelBinding.Model
         [RegularExpression("^[a-zA-Z ]$", ErrorMessage ="{0} is not valid")]
         public string BookName { get; set; }
 
+        [ValidateNever]
         public string? Author { get; set; }
 
         [Range(0, 999.99, ErrorMessage ="{0} must be between {1} and {2}")]
         public Decimal Price { get; set; }
+
+        [EmailAddress(ErrorMessage ="Email format is not valid")]
+        public string AuthorEmail { get; set; }
+
+        public string Password { get; set; }
+
+        [Compare("Password", ErrorMessage = "Password does not match ConfirmPassword")]
+        public string ConfirmPassword { get; set; }
     }
 }
